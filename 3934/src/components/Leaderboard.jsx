@@ -45,20 +45,20 @@ export function Leaderboard() {
   };
 
   return (
-    <div className="bg-white/90 p-6 rounded-lg shadow-md backdrop-blur-sm">
+    <div className="bg-gray-600/20 p-6 rounded-lg shadow-md backdrop-blur-sm">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-xl font-bold flex items-center">
+        <h3 className="text-xl text-white font-bold flex items-center">
           <Trophy className="w-6 h-6 text-yellow-500 mr-2" />
           Leaderboard
         </h3>
         <select
-          className="px-3 py-1 rounded-md border border-gray-200"
+          className="px-3 py-2 rounded-md border bg-gray-400/20 text-white border-gray-200"
           value={timeframe}
           onChange={(e) => setTimeframe(e.target.value)}
         >
-          <option value="week">This Week</option>
-          <option value="month">This Month</option>
-          <option value="allTime">All Time</option>
+          <option value="week" className='font-bold bg-gray-400/20 text-gray-700'>This Week</option>
+          <option value="month" className='font-bold bg-gray-400/20 text-gray-700'>This Month</option>
+          <option value="allTime" className='font-bold bg-gray-400/20 text-gray-700'>All Time</option>
         </select>
       </div>
 
@@ -66,7 +66,7 @@ export function Leaderboard() {
         {leaderboard.map((user, index) => (
           <div
             key={user.name}
-            className="flex items-center justify-between p-3 rounded-lg bg-gradient-to-r from-gray-50 to-gray-100"
+            className="flex items-center justify-between p-3 rounded-lg bg-gradient-to-r from-gray-500 to-gray-700"
           >
             <div className="flex items-center">
               {index === 0 ? (
@@ -78,11 +78,11 @@ export function Leaderboard() {
               ) : (
                 <Star className="w-6 h-6 text-blue-400 mr-2" />
               )}
-              <span className="font-medium">{user.name}</span>
+              <span className="font-medium text-gray-200">{user.name}</span>
             </div>
             <div className="flex items-center">
-              <span className="font-bold text-lg">{user.points}</span>
-              <span className="text-sm text-gray-500 ml-1">pts</span>
+              <span className="font-bold text-gray-200 text-lg">{user.points}</span>
+              <span className="text-sm text-gray-300 ml-1">pts</span>
             </div>
           </div>
         ))}

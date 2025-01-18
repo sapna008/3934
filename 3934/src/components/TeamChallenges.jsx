@@ -68,7 +68,7 @@ export function TeamChallenges({ user }) {
   };
 
   return (
-    <div className="bg-white/90 p-6 rounded-lg shadow-md backdrop-blur-sm">
+    <div className="bg-gray-600/20 text-white p-6 rounded-lg shadow-md backdrop-blur-sm">
       <div className="flex items-center mb-6">
         <Target className="w-6 h-6 text-blue-600 mr-2" />
         <h3 className="text-xl font-bold">Team Challenges</h3>
@@ -87,10 +87,10 @@ export function TeamChallenges({ user }) {
               )}
             </div>
             
-            <p className="text-gray-600 mb-3">{challenge.description}</p>
+            <p className="text-gray-200 mb-3">{challenge.description}</p>
             
             <div className="mb-2">
-              <div className="flex justify-between text-sm text-gray-600 mb-1">
+              <div className="flex justify-between text-sm text-gray-100 mb-1">
                 <span>Progress</span>
                 <span>{challenge.current}/{challenge.target}</span>
               </div>
@@ -102,7 +102,7 @@ export function TeamChallenges({ user }) {
               </div>
             </div>
             
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-gray-200">
               <span className="font-medium">Reward:</span> {challenge.reward}
             </div>
           </div>

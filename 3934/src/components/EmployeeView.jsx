@@ -97,20 +97,20 @@ export function EmployeeView({ user }) {
   return (
     <div>
       {/* Navbar */}
-      <nav className="bg-white shadow-md fixed w-full z-10">
+      <nav className="bg-gray-500/30 shadow-md fixed w-full z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
-              <Menu className="h-6 w-6 text-gray-600" />
-              <span className="ml-3 text-xl font-semibold text-gray-800">Dashboard</span>
+              <Menu className="h-6 w-6 text-gray-200" />
+              <span className="ml-3 text-xl font-semibold text-gray-100">Dashboard</span>
             </div>
             <div className="flex items-center space-x-4">
               <div className="relative">
                 <button
                   onClick={() => setShowNotifications(!showNotifications)}
-                  className="p-2 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="p-2 rounded-full hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-100"
                 >
-                  <Bell className="h-6 w-6 text-gray-600" />
+                  <Bell className="h-6 w-6 text-gray-200 hover:text-gray-600"/>
                 </button>
                 {showNotifications && (
                   <div className="absolute right-0 mt-2 w-96 transform">
@@ -124,7 +124,7 @@ export function EmployeeView({ user }) {
                   src={`https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=random`}
                   alt={user.name}
                 />
-                <span className="ml-2 text-gray-700">{user.name}</span>
+                <span className="ml-2 text-gray-100">{user.name}</span>
               </div>
             </div>
           </div>
@@ -132,20 +132,20 @@ export function EmployeeView({ user }) {
       </nav>
 
       {/* Main Content */}
-      <div className="pt-20 p-6 bg-white/80 backdrop-blur-sm">
+      <div className="pt-20 p-6 bg-gray-100/10 backdrop-blur-sm">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-800">Welcome, {user.name}!</h2>
-          <div className="bg-blue-100 px-4 py-2 rounded-full">
-            <span className="text-blue-800 font-semibold">Total Points: {points}</span>
+          <h2 className="text-2xl font-bold text-gray-100">Welcome, {user.name}!</h2>
+          <div className="bg-gray-400 px-4 py-2 rounded-full">
+            <span className="text-white font-semibold">Total Points: {points}</span>
           </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           <div className="lg:col-span-2">
-            <div className="bg-white/90 p-6 rounded-lg shadow-md backdrop-blur-sm">
+            <div className="bg-gray-600/20 text-white p-6 rounded-lg shadow-md backdrop-blur-sm">
               <h3 className="text-xl font-bold mb-4">My Tasks</h3>
               {tasks.length === 0 ? (
-                <p className="text-gray-600">No pending tasks</p>
+                <p className="text-gray-300">No pending tasks</p>
               ) : (
                 <div className="space-y-4">
                   {tasks.map((task) => (
@@ -153,7 +153,7 @@ export function EmployeeView({ user }) {
                       <div className="flex justify-between items-start mb-4">
                         <div>
                           <h4 className="font-semibold text-lg">{task.taskName}</h4>
-                          <p className="text-gray-600 mt-1">{task.description}</p>
+                          <p className="text-gray-300 mt-1">{task.description}</p>
                         </div>
                         <button
                           onClick={() => completeTask(task)}
@@ -174,22 +174,22 @@ export function EmployeeView({ user }) {
                             Priority: {task.priority}
                           </span>
                         </div>
-                        <div className="text-sm text-gray-600">
+                        <div className="text-sm text-gray-300">
                           Difficulty: <span className="capitalize">{task.difficulty}</span>
                         </div>
-                        <div className="text-sm text-gray-600">
+                        <div className="text-sm text-gray-300">
                           Est. Time: {task.estimatedTime}h
                         </div>
                       </div>
 
-                      <div className="text-sm text-gray-600">
+                      <div className="text-sm text-gray-300">
                         <p>Assigned by: {task.assignedBy}</p>
                         {task.reference && <p>Reference: {task.reference}</p>}
                       </div>
 
                       {task.supportingLinks && (
                         <div className="mt-2">
-                          <p className="text-sm font-medium text-gray-700">Supporting Links:</p>
+                          <p className="text-sm font-medium text-gray-400">Supporting Links:</p>
                           <div className="text-sm text-blue-600">
                             {task.supportingLinks.split('\n').map((link, index) => (
                               <a key={index} href={link} target="_blank" rel="noopener noreferrer" className="block hover:underline">

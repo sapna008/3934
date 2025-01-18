@@ -153,6 +153,7 @@ export function Notifications({ user }) {
                 {notification.details && (
                   <p className="text-gray-600 text-sm mt-1">{notification.details}</p>
                 )}
+
               </div>
             </div>
           </div>
