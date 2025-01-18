@@ -19,7 +19,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.2",
-    "react-ui-cards": "^3.1.0"
+    "react-ui-cards": "^3.1.0",
+    "recharts": "^2.15.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
