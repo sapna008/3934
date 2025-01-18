@@ -1,4 +1,9 @@
+import axios from 'axios';
+
 import React, { useState } from 'react';
+
+let url="https://emplyee-18cd7-default-rtdb.firebaseio.com/users.json"
+
 
 function TaskLogging() {
   const [tasks, setTasks] = useState([]);
@@ -16,9 +21,11 @@ function TaskLogging() {
     setTaskData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+ const handleSubmit =  async(e) => {
     e.preventDefault();
+    
     setTasks([...tasks, taskData]);
+    await axios.post(url,taskData);
     setTaskData({
       title: '',
       description: '',
