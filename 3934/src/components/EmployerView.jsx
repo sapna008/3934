@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { Users, BarChart, FileText, X } from 'lucide-react';
 import axios from 'axios';
+import { Analytics } from './Analytics';
+import { Reports } from './Reports';
 
 export function EmployerView({ user }) {
   const [tasks, setTasks] = useState([]);
   const [points, setPoints] = useState(0);
   const [showNotifications, setShowNotifications] = useState(false);
   const [showTaskForm, setShowTaskForm] = useState(false);
+  const [showAnalytics, setShowAnalytics] = useState(false);
+  const [showReports, setShowReports] = useState(false);
   const [taskData, setTaskData] = useState({
     taskName: '',
     description: '',
@@ -81,7 +85,10 @@ export function EmployerView({ user }) {
               </div>
 
               {/* Analytics Card */}
-              <div className="hover:scale-105 transition-all duration-300">
+              <div 
+                onClick={() => setShowAnalytics(true)}
+                className="hover:scale-105 transition-all duration-300 cursor-pointer"
+              >
                 <div className="h-full bg-gray-600/20 backdrop-blur-md rounded-2xl p-6 border border-gray-700/50 hover:border-purple-500/50 shadow-lg hover:shadow-purple-500/10">
                   <div className="flex items-center mb-4">
                     <div className="p-3 rounded-xl bg-purple-500/10 text-purple-400">
@@ -94,7 +101,10 @@ export function EmployerView({ user }) {
               </div>
 
               {/* Reports Card */}
-              <div className="hover:scale-105 transition-all duration-300">
+              <div 
+                onClick={() => setShowReports(true)}
+                className="hover:scale-105 transition-all duration-300 cursor-pointer"
+              >
                 <div className="h-full bg-gray-600/20 backdrop-blur-md rounded-2xl p-6 border border-gray-700/50 hover:border-pink-500/50 shadow-lg hover:shadow-pink-500/10">
                   <div className="flex items-center mb-4">
                     <div className="p-3 rounded-xl bg-pink-500/10 text-pink-400">
@@ -127,7 +137,7 @@ export function EmployerView({ user }) {
                     <div className="p-6">
                       <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          {/* Form fields remain the same */}
+                          {/* Form fields */}
                           <div>
                             <label className="block text-sm font-medium text-gray-300 mb-2">
                               Task Name
@@ -255,7 +265,7 @@ export function EmployerView({ user }) {
                           </div>
                         </div>
 
-                        {/* Button Container - Fixed at bottom */}
+                        {/* Button Container */}
                         <div className="flex justify-end space-x-4 pt-4">
                           <button
                             type="button"
@@ -277,6 +287,12 @@ export function EmployerView({ user }) {
                 </div>
               </div>
             )}
+
+            {/* Analytics Modal */}
+            <Analytics isOpen={showAnalytics} onClose={() => setShowAnalytics(false)} />
+
+            {/* Reports Modal */}
+            <Reports isOpen={showReports} onClose={() => setShowReports(false)} />
           </div>
         </div>
       </div>
