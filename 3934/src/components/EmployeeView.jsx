@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Notifications } from './NotificationCenter';
 import { Leaderboard } from './Leaderboard';
 import { TeamChallenges } from './TeamChallenges';
+import { LogOut } from 'lucide-react';
 
 export function EmployeeView({ user }) {
   const [tasks, setTasks] = useState([]);
@@ -126,6 +127,13 @@ export function EmployeeView({ user }) {
                 />
                 <span className="ml-2 text-gray-100">{user.name}</span>
               </div>
+              <a
+                href="/"
+                className="flex items-center px-4 py-2 bg-transparent hover:bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors"
+              >
+                <LogOut className="h-5 w-5 mr-2 text-white/90 hover:text-gray-400 transition-colors" />
+                
+              </a>
             </div>
           </div>
         </div>
