@@ -30,10 +30,15 @@ const mockEmployees = [
 
 const Leaderboard = () => {
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6">
-      <div className="flex items-center gap-2 mb-6">
+    <div className="bg-white rounded-lg shadow-lg p-6"
+    style={{
+      backgroundColor: 'rgba(57, 57, 63, 0.24)', // Dark blue with 90% transparency
+      color: 'white',
+    }}
+    >
+      <div className="flex items-center gap-2 mb-6" >
         <Trophy className="w-6 h-6 text-yellow-500" />
-        <h2 className="text-2xl font-bold text-gray-800">Top Performers</h2>
+        <h2 className="text-2xl font-bold ">Top Performers</h2>
       </div>
       
       <div className="space-y-4">
@@ -41,10 +46,14 @@ const Leaderboard = () => {
           <div
             key={employee.id}
             className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+            style={{
+              backgroundColor: 'rgba(57, 57, 63, 0.24)', // Dark blue with 90% transparency
+              color: 'white',
+            }}
           >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4" >
               {index === 0 && <Medal className="w-6 h-6 text-yellow-500" />}
-              {index === 1 && <Medal className="w-6 h-6 text-gray-400" />}
+              {index === 1 && <Medal className="w-6 h-6 text-gray-200" />}
               {index === 2 && <Medal className="w-6 h-6 text-amber-700" />}
               
               <img
@@ -54,7 +63,7 @@ const Leaderboard = () => {
               />
               
               <div>
-                <h3 className="font-semibold text-gray-800">{employee.name}</h3>
+                <h3 className="font-semibold ">{employee.name}</h3>
                 <p className="text-sm text-gray-600">{employee.completedTasks} tasks completed</p>
               </div>
             </div>

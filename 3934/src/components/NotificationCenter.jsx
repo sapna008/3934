@@ -55,7 +55,7 @@ const NotificationCenter = () => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2 text-gray-600 hover:text-gray-800 transition-colors"
+        className="relative p-2 text-gray-400 hover:text-gray-600 transition-colors"
       >
         <Bell className="w-6 h-6" />
         {unreadCount > 0 && (
