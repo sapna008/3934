@@ -3,10 +3,6 @@ import { Users, BarChart, FileText } from 'lucide-react';
 import axios from 'axios';
 
 export function EmployerView({ user }) {
-  const [tasks, setTasks] = useState([]);
-  const [points, setPoints] = useState(0);
-  const [showNotifications, setShowNotifications] = useState(false);
-
   const [showTaskForm, setShowTaskForm] = useState(false);
   const [taskData, setTaskData] = useState({
     taskName: '',
