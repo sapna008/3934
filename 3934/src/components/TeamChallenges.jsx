@@ -30,25 +30,35 @@ const challenges = [
 
 const TeamChallenges = () => {
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6">
+    <div className="bg-white rounded-lg shadow-lg p-6"
+    style={{
+      backgroundColor: 'rgba(57, 57, 63, 0.24)', // Dark blue with 90% transparency
+      color: 'white',
+    }}
+    >
       <div className="flex items-center gap-2 mb-6">
         <Target className="w-6 h-6 text-indigo-500" />
-        <h2 className="text-2xl font-bold text-gray-800">Team Challenges</h2>
+        <h2 className="text-2xl font-bold">Team Challenges</h2>
       </div>
 
       <div className="space-y-6">
         {challenges.map(challenge => (
-          <div key={challenge.id} className="bg-gray-50 rounded-lg p-4">
+          <div key={challenge.id} className="bg-gray-50 rounded-lg p-4"
+          style={{
+            backgroundColor: 'rgba(57, 57, 63, 0.24)', // Dark blue with 90% transparency
+            color: 'white',
+          }}
+          >
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="font-semibold text-gray-800">{challenge.title}</h3>
-                <p className="text-sm text-gray-600 mt-1">{challenge.description}</p>
+                <h3 className="font-semibold text-gray-200">{challenge.title}</h3>
+                <p className="text-sm text-gray-400 mt-1">{challenge.description}</p>
               </div>
               <Users className="w-5 h-5 text-gray-400" />
             </div>
 
             <div className="mt-4">
-              <div className="flex justify-between text-sm text-gray-600 mb-1">
+              <div className="flex justify-between text-sm text-gray-400 mb-1">
                 <span>Progress</span>
                 <span>{challenge.progress}%</span>
               </div>
