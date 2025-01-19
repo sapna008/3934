@@ -5,8 +5,18 @@ import { Notifications } from './NotificationCenter';
 import { Leaderboard } from './Leaderboard';
 import { TeamChallenges } from './TeamChallenges';
 import { LogOut } from 'lucide-react';
+import { useLocation } from "react-router-dom";
 
 export function EmployeeView({ user }) {
+  const location = useLocation();
+
+  let dashboardTitle = "Dashboard";
+  if (location.pathname === "/dashboard/employer") {
+    dashboardTitle = "Employer Dashboard";
+  } else if (location.pathname === "/dashboard/employee") {
+    dashboardTitle = "Employee Dashboard";
+  }
+
   const [tasks, setTasks] = useState([]);
   const [points, setPoints] = useState(0);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -102,8 +112,7 @@ export function EmployeeView({ user }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
-              <Menu className="h-6 w-6 text-gray-200" />
-              <span className="ml-3 text-xl font-semibold text-gray-100">Dashboard</span>
+              <span className="ml-3 text-xl font-semibold text-gray-100">{dashboardTitle}</span>
             </div>
             <div className="flex items-center space-x-4">
               <div className="relative">
@@ -111,7 +120,7 @@ export function EmployeeView({ user }) {
                   onClick={() => setShowNotifications(!showNotifications)}
                   className="p-2 rounded-full hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-100"
                 >
-                  <Bell className="h-6 w-6 text-gray-200 hover:text-gray-600"/>
+                  <Bell className="h-6 w-6 text-gray-200 hover:text-gray-600" />
                 </button>
                 {showNotifications && (
                   <div className="absolute right-0 mt-2 w-96 transform">
@@ -132,7 +141,7 @@ export function EmployeeView({ user }) {
                 className="flex items-center px-4 py-2 bg-transparent hover:bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors"
               >
                 <LogOut className="h-5 w-5 mr-2 text-white/90 hover:text-gray-400 transition-colors" />
-                
+
               </a>
             </div>
           </div>
@@ -170,7 +179,7 @@ export function EmployeeView({ user }) {
                           Complete
                         </button>
                       </div>
-                      
+
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                         <div>
                           <span className={`inline-block px-2 py-1 rounded-full text-sm ${getTaskTypeColor(task.taskType)}`}>

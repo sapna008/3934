@@ -63,7 +63,7 @@ const AIInteractionPopup = () => {
           right: '20px',
           width: '60px',
           height: '60px',
-          backgroundColor: '#007bff',
+          backgroundColor: 'rgba(252, 253, 255, 0.62)',
           borderRadius: '50%',
           display: 'flex',
           justifyContent: 'center',
@@ -74,7 +74,7 @@ const AIInteractionPopup = () => {
           zIndex: 1000,
         }}
       >
-        💬
+       <img src="https://i.ibb.co/JpG6JDx/icons8-ai-chatting-50.png" alt="" />
       </div>
 
       {/* Chat Popup */}
@@ -86,7 +86,7 @@ const AIInteractionPopup = () => {
             bottom: '90px',
             right: '20px',
             width: '300px',
-            backgroundColor: '#2c2d2f',
+            backgroundColor: 'rgba(40, 40, 45, 0.95)',
             borderRadius: '8px',
             boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)',
             zIndex: 1000,
@@ -101,7 +101,8 @@ const AIInteractionPopup = () => {
               style={{
                 marginBottom: '10px',
                 padding: '8px',
-                backgroundColor: '#f9f9f9',
+                backgroundColor: 'rgba(57, 57, 63, 0.24)',
+                color: 'rgb(192, 195, 200)',
                 borderRadius: '4px',
                 fontSize: '14px',
                 border: '1px solid #ddd',
@@ -121,9 +122,11 @@ const AIInteractionPopup = () => {
               height: '80px',
               marginBottom: '8px',
               border: '1px solid #ddd',
+              backgroundColor: 'rgba(57, 57, 63, 0.57)',
               borderRadius: '4px',
               padding: '8px',
               resize: 'none',
+              color: 'white',
             }}
           />
           <button
@@ -132,12 +135,12 @@ const AIInteractionPopup = () => {
             style={{
               width: '100%',
               padding: '10px',
-              backgroundColor: '#007bff',
+              backgroundColor: '#6b7280',
               color: '#fff',
               border: 'none',
               borderRadius: '4px',
               cursor: 'pointer',
-            }}
+            } } className="hover:bg-gray-700" 
           >
             {loading ? 'Sending...' : 'Send'}
           </button>

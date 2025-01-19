@@ -8,8 +8,17 @@ import { Bell, Menu } from 'lucide-react';
 import { Navbar } from './Navbar';
 import { useNavigate } from 'react-router-dom';
 import { LogOut } from 'lucide-react';
+import { useLocation } from "react-router-dom";
 
 export function EmployerView({ user }) {
+  const location = useLocation();
+
+  let dashboardTitle = "Dashboard";
+  if (location.pathname === "/dashboard/employer") {
+    dashboardTitle = "Employer Dashboard";
+  } else if (location.pathname === "/dashboard/employee") {
+    dashboardTitle = "Employee Dashboard";
+  }
   const navigate = useNavigate();
 
   const [tasks, setTasks] = useState([]);
@@ -142,10 +151,9 @@ export function EmployerView({ user }) {
       <nav className="bg-gray-500/30 shadow-md fixed w-full z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <Menu className="h-6 w-6 text-gray-200" />
-              <span className="ml-3 text-xl font-semibold text-gray-100">Dashboard</span>
-            </div>
+          <div className="flex items-center">
+      <span className="ml-3 text-xl font-semibold text-gray-100">{dashboardTitle}</span>
+    </div>
             <div className="flex items-center space-x-4">
 
               <div className="flex items-center">
