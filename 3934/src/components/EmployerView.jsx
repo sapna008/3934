@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Users, BarChart, FileText, X, UserPlus, ClipboardList } from 'lucide-react';
+import { Users, BarChart, FileText, X, UserPlus, ClipboardList, UserCircle } from 'lucide-react';
 import axios from 'axios';
 import { Analytics } from './Analytics';
 import { Reports } from './Reports';
@@ -30,6 +30,7 @@ export function EmployerView({ user }) {
   const [showAnalytics, setShowAnalytics] = useState(false);
   const [showReports, setShowReports] = useState(false);
   const [showTaskList, setShowTaskList] = useState(false);
+  const [showViewEmployees, setShowViewEmployees] = useState(false);
   const [employeeData, setEmployeeData] = useState({
     name: '',
     department: 'Development',
@@ -49,7 +50,6 @@ export function EmployerView({ user }) {
     status: 'pending'
   });
 
-  // Fetch employees and tasks on component mount
   useEffect(() => {
     fetchEmployees();
     fetchTasks();
@@ -97,7 +97,7 @@ export function EmployerView({ user }) {
         joinDate: new Date().toISOString().split('T')[0]
       });
       setShowEmployeeForm(false);
-      fetchEmployees(); // Refresh employee list
+      fetchEmployees();
     } catch (error) {
       console.error('Error adding employee:', error);
       alert('Failed to add employee');
@@ -126,7 +126,7 @@ export function EmployerView({ user }) {
         status: 'pending'
       });
       setShowTaskForm(false);
-      fetchTasks(); // Refresh task list
+      fetchTasks();
     } catch (error) {
       console.error('Error assigning task:', error);
       alert('Failed to assign task');
@@ -138,7 +138,7 @@ export function EmployerView({ user }) {
       await axios.patch(`https://hackathon-bf312-default-rtdb.firebaseio.com/tasks/${taskId}.json`, {
         status: newStatus
       });
-      fetchTasks(); // Refresh task list
+      fetchTasks();
     } catch (error) {
       console.error('Error updating task status:', error);
       alert('Failed to update task status');
@@ -151,11 +151,10 @@ export function EmployerView({ user }) {
       <nav className="bg-gray-500/30 shadow-md fixed w-full z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
-          <div className="flex items-center">
-      <span className="ml-3 text-xl font-semibold text-gray-100">{dashboardTitle}</span>
-    </div>
+            <div className="flex items-center">
+              <span className="ml-3 text-xl font-semibold text-gray-100">{dashboardTitle}</span>
+            </div>
             <div className="flex items-center space-x-4">
-
               <div className="flex items-center">
                 <img
                   className="h-8 w-8 rounded-full"
@@ -164,15 +163,12 @@ export function EmployerView({ user }) {
                 />
                 <span className="ml-2 text-gray-100">{user.name}</span>
               </div>
-              
               <a
                 href="/"
                 className="flex items-center px-4 py-2 bg-transparent hover:bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors"
               >
                 <LogOut className="h-5 w-5 mr-2 text-white/90 hover:text-gray-400 transition-colors" />
-                
               </a>
-
             </div>
           </div>
         </div>
@@ -227,9 +223,9 @@ export function EmployerView({ user }) {
               {/* Task List Card */}
               <div
                 onClick={() => setShowTaskList(true)}
-                className="group  hover:scale-105 transition-all duration-300 cursor-pointer"
+                className="group hover:scale-105 transition-all duration-300 cursor-pointer"
               >
-                <div className="h-full bg-gray-600/20 backdrop-blur-md rounded-2xl  p-6 border border-gray-700/50 hover:border-yellow-500/50 shadow-lg hover:shadow-yellow-500/10">
+                <div className="h-full bg-gray-600/20 backdrop-blur-md rounded-2xl p-6 border border-gray-700/50 hover:border-yellow-500/50 shadow-lg hover:shadow-yellow-500/10">
                   <div className="flex items-center mb-4">
                     <div className="p-3 rounded-xl bg-yellow-500/10 text-yellow-400">
                       <ClipboardList className="w-6 h-6" />
@@ -237,6 +233,22 @@ export function EmployerView({ user }) {
                     <h3 className="ml-4 text-xl font-semibold text-white pt-2">Task Tracking</h3>
                   </div>
                   <p className="text-gray-400">View and manage all assigned tasks</p>
+                </div>
+              </div>
+
+              {/* View Employees Card */}
+              <div
+                onClick={() => setShowViewEmployees(true)}
+                className="group hover:scale-105 transition-all duration-300 cursor-pointer"
+              >
+                <div className="h-full bg-gray-600/20 backdrop-blur-md rounded-2xl p-6 border border-gray-700/50 hover:border-indigo-500/50 shadow-lg hover:shadow-indigo-500/10">
+                  <div className="flex items-center mb-4">
+                    <div className="p-3 rounded-xl bg-indigo-500/10 text-indigo-400">
+                      <UserCircle className="w-6 h-6" />
+                    </div>
+                    <h3 className="ml-4 text-xl font-semibold text-white">View Employees</h3>
+                  </div>
+                  <p className="text-gray-400">View and manage team members by department</p>
                 </div>
               </div>
 
@@ -357,6 +369,60 @@ export function EmployerView({ user }) {
                         </button>
                       </div>
                     </form>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* View Employees Modal */}
+            {showViewEmployees && (
+              <div className="fixed inset-0 z-50 overflow-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+                <div className="bg-gray-600/20 backdrop-blur-md rounded-2xl w-full max-w-4xl border border-gray-700/50 shadow-2xl">
+                  <div className="flex justify-between items-center p-6 border-b border-gray-700/50">
+                    <h2 className="text-2xl font-semibold text-white">Employees by Department</h2>
+                    <button
+                      onClick={() => setShowViewEmployees(false)}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      <X className="w-6 h-6" />
+                    </button>
+                  </div>
+                  <div className="p-6 max-h-[70vh] overflow-y-auto">
+                    {['Development', 'Design', 'Marketing'].map((department) => (
+                      <div key={department} className="mb-8">
+                        <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
+                          <span className="w-3 h-3 rounded-full bg-indigo-500 mr-3"></span>
+                          {department}
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                          {employees
+                            .filter((emp) => emp.department === department)
+                            .map((employee) => (
+                              <div
+                                key={employee.id}
+                                className="bg-gray-700/20 backdrop-blur-sm rounded-xl p-4 border border-gray-600/50"
+                              >
+                                <div className="flex items-center space-x-3">
+                                  <img
+                                    src={`https://ui-avatars.com/api/?name=${encodeURIComponent(
+                                      employee.name
+                                    )}&background=random`}
+                                    alt={employee.name}
+                                    className="w-12 h-12 rounded-full"
+                                  />
+                                  <div>
+                                    <h4 className="text-white font-medium">{employee.name}</h4>
+                                    <p className="text-gray-400 text-sm">{employee.email}</p>
+                                    <p className="text-gray-400 text-sm">
+                                      Joined: {new Date(employee.joinDate).toLocaleDateString()}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -539,14 +605,15 @@ export function EmployerView({ user }) {
               </div>
             )}
 
+            {/* Task List Modal */}
             {showTaskList && (
               <div
                 className="fixed inset-0 z-50 overflow-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
-                onClick={() => setShowTaskList(false)} // Close modal when clicking outside
+                onClick={() => setShowTaskList(false)}
               >
                 <div
                   className="bg-gray-600/20 backdrop-blur-md rounded-2xl w-full max-w-6xl border border-gray-700/50 shadow-2xl"
-                  onClick={(e) => e.stopPropagation()} // Prevent modal close when clicking inside
+                  onClick={(e) => e.stopPropagation()}
                 >
                   <div className="flex justify-between items-center p-6 border-b border-gray-700/50">
                     <h2 className="text-2xl font-semibold text-white">Task Tracking</h2>
@@ -554,8 +621,7 @@ export function EmployerView({ user }) {
                       onClick={() => setShowTaskList(false)}
                       className="text-gray-400 hover:text-white transition-colors"
                     >
-                      <X className="w-6 h-6" />
-                    </button>
+                      <X className="w-6 h-6" /> </button>
                   </div>
                   <div className="p-6">
                     <div className="overflow-x-auto">
@@ -579,12 +645,13 @@ export function EmployerView({ user }) {
                               <td className="p-3 text-white">{task.priority}</td>
                               <td className="p-3">
                                 <span
-                                  className={`px-3 py-1 rounded-full text-xs font-medium ${task.status === 'completed'
-                                    ? 'bg-green-500/20 text-green-400'
-                                    : task.status === 'in-progress'
+                                  className={`px-3 py-1 rounded-full text-xs font-medium ${
+                                    task.status === 'completed'
+                                      ? 'bg-green-500/20 text-green-400'
+                                      : task.status === 'in-progress'
                                       ? 'bg-yellow-500/20 text-yellow-400'
                                       : 'bg-gray-500/20 text-gray-400'
-                                    }`}
+                                  }`}
                                 >
                                   {task.status}
                                 </span>
@@ -609,8 +676,6 @@ export function EmployerView({ user }) {
                 </div>
               </div>
             )}
-
-
 
             {/* Analytics Modal */}
             <Analytics isOpen={showAnalytics} onClose={() => setShowAnalytics(false)} />

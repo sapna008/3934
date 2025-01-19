@@ -119,7 +119,7 @@ export function Reports({ isOpen, onClose }) {
               ) : (
                 <Filter className="w-5 h-5" />
               )}
-              Generate AI Report
+              Generate Report
             </button>
           </div>
         </div>
