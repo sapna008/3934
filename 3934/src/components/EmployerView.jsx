@@ -227,14 +227,14 @@ export function EmployerView({ user }) {
               {/* Task List Card */}
               <div
                 onClick={() => setShowTaskList(true)}
-                className="group hover:scale-105 transition-all duration-300 cursor-pointer"
+                className="group  hover:scale-105 transition-all duration-300 cursor-pointer"
               >
-                <div className="h-full bg-gray-600/20 backdrop-blur-md rounded-2xl p-6 border border-gray-700/50 hover:border-yellow-500/50 shadow-lg hover:shadow-yellow-500/10">
+                <div className="h-full bg-gray-600/20 backdrop-blur-md rounded-2xl  p-6 border border-gray-700/50 hover:border-yellow-500/50 shadow-lg hover:shadow-yellow-500/10">
                   <div className="flex items-center mb-4">
                     <div className="p-3 rounded-xl bg-yellow-500/10 text-yellow-400">
                       <ClipboardList className="w-6 h-6" />
                     </div>
-                    <h3 className="ml-4 text-xl font-semibold text-white">Task Tracking</h3>
+                    <h3 className="ml-4 text-xl font-semibold text-white pt-2">Task Tracking</h3>
                   </div>
                   <p className="text-gray-400">View and manage all assigned tasks</p>
                 </div>

@@ -7,11 +7,40 @@ export function LoginForm({ onLogin, onNavigate }) {
     email: '',
     role: 'employee',
   });
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const validateEmployee = async (name) => {
+    try {
+      const response = await fetch('https://hackathon-bf312-default-rtdb.firebaseio.com/employees.json');
+      const data = await response.json();
+      
+      // Check if the employee exists in the data
+      const employeeExists = Object.values(data).some(
+        employee => employee.name.toLowerCase() === name.toLowerCase()
+      );
+      
+      return employeeExists;
+    } catch (error) {
+      console.error('Error validating employee:', error);
+      return false;
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(''); // Reset error state
+
+    if (formData.role === 'employee') {
+      const isValidEmployee = await validateEmployee(formData.name);
+      
+      if (!isValidEmployee) {
+        setError('Employee does not exist');
+        return;
+      }
+    }
+
+    // If validation passes or role is employer, proceed with login
     onLogin(formData);
-    // Instead of using navigate, we'll call the callback prop
     if (onNavigate) {
       onNavigate(`/dashboard/${formData.role}`);
     }
@@ -21,17 +50,23 @@ export function LoginForm({ onLogin, onNavigate }) {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
       <div className="backdrop-blur-sm p-8 rounded-2xl shadow-xl w-full max-w-md transform transition-all duration-300 hover:scale-[1.01]"
                 style={{
-                  backgroundColor: 'rgba(57, 57, 63, 0.24)', // Dark blue with transparency
+                  backgroundColor: 'rgba(57, 57, 63, 0.24)',
                   color: 'white',
                 }}>
         <div className="flex justify-center mb-8">
-          <div className=" p-4 rounded-full">
+          <div className="p-4 rounded-full">
             <UserCircle className="w-16 h-16 text-gray-500" />
           </div>
         </div>
         
         <h2 className="text-3xl font-bold text-center mb-2">Welcome Back</h2>
         <p className="text-center text-gray-300 mb-8">Please enter your details</p>
+        
+        {error && (
+          <div className="mb-4 p-3 rounded-lg bg-red-500/20 border border-red-500 text-red-100">
+            {error}
+          </div>
+        )}
         
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="relative">
@@ -82,7 +117,7 @@ export function LoginForm({ onLogin, onNavigate }) {
                 value={formData.role}
                 onChange={(e) => setFormData({ ...formData, role: e.target.value })}
               >
-                <option value="employee" className="blue-200/60" >Employee</option>
+                <option value="employee" className="blue-200/60">Employee</option>
                 <option value="employer">Employer</option>
               </select>
             </div>
