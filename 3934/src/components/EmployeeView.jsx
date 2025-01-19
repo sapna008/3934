@@ -108,7 +108,7 @@ export function EmployeeView({ user }) {
   return (
     <div>
       {/* Navbar */}
-      <nav className="bg-gray-500/30 shadow-md fixed w-full z-10">
+      <nav className="bg-gray-500/30 dark:bg-gray-800/50 shadow-md fixed w-full z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
@@ -118,12 +118,12 @@ export function EmployeeView({ user }) {
               <div className="relative">
                 <button
                   onClick={() => setShowNotifications(!showNotifications)}
-                  className="p-2 rounded-full hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                  className="p-2 rounded-full hover:bg-gray-300 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:focus:ring-gray-700"
                 >
-                  <Bell className="h-6 w-6 text-gray-200 hover:text-gray-600" />
+                  <Bell className="h-6 w-6 text-gray-200 hover:text-gray-600 dark:hover:text-gray-300" />
                 </button>
                 {showNotifications && (
-                  <div className="absolute right-0 mt-2 w-96 transform">
+                  <div className="absolute right-0 mt-2">
                     <Notifications user={user} />
                   </div>
                 )}
@@ -138,10 +138,9 @@ export function EmployeeView({ user }) {
               </div>
               <a
                 href="/"
-                className="flex items-center px-4 py-2 bg-transparent hover:bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors"
+                className="flex items-center px-4 py-2 bg-transparent hover:bg-gray-700 dark:hover:bg-gray-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors"
               >
-                <LogOut className="h-5 w-5 mr-2 text-white/90 hover:text-gray-400 transition-colors" />
-
+                <LogOut className="h-5 w-5 mr-2 text-white/90 hover:text-gray-400 dark:hover:text-gray-300 transition-colors" />
               </a>
             </div>
           </div>

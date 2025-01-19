@@ -115,45 +115,45 @@ export function Notifications({ user }) {
 
   if (notifications.length === 0) {
     return (
-      <div className="bg-white rounded-lg shadow-lg p-4">
+      <div className="fixed right-0 sm:right-auto sm:relative bg-gray-600/40 rounded-lg shadow-lg p-4 w-[calc(100vw-2rem)] sm:w-auto mx-4 sm:mx-0">
         <p className="text-gray-500 text-center">No new notifications</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+    <div className="fixed right-0 sm:right-auto text-white sm:relative bg-gray-500/90 rounded-lg shadow-lg overflow-hidden w-[calc(100vw-2rem)] sm:w-auto mx-4 sm:mx-0">
       <div className="p-4 border-b">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <Bell className="w-5 h-5 text-blue-600 mr-2" />
-            <h3 className="text-lg font-semibold">Notifications</h3>
+            <Bell className="w-5 h-5 text-white mr-2" />
+            <h3 className="text-lg p-2 font-semibold">Notifications</h3>
           </div>
-          <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+          <span className="bg-yellow-400 text-gray-200 p-2 text-xs font-medium px-2.5 py-0.5 rounded-full">
             {notifications.length} New
           </span>
         </div>
       </div>
-      <div className="max-h-96 overflow-y-auto">
+      <div className="max-h-[calc(100vh-16rem)] sm:max-h-96 overflow-y-auto ">
         {notifications.map((notification, index) => (
           <div
+
             key={index}
             className={`p-4 border-b last:border-b-0 ${
               notification.type === 'achievement' ? 'bg-green-50' :
               notification.type === 'deadline' ? 'bg-orange-50' :
               notification.type === 'urgent' ? 'bg-red-50' :
               notification.type === 'streak' ? 'bg-purple-50' :
-              'bg-gray-50'
+              'bg-gray-300/90'
             }`}
           >
-            <div className="flex items-start">
+            <div className="flex items-start ">
               {notification.icon}
               <div className="ml-3">
                 <p className="text-gray-800 font-medium">{notification.message}</p>
                 {notification.details && (
                   <p className="text-gray-600 text-sm mt-1">{notification.details}</p>
                 )}
-
               </div>
             </div>
           </div>
