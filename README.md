@@ -2,6 +2,9 @@
 A Team Productivity and Performance Tracking Application for Employees and Employers
 
 ---
+Deployed Project Link-[EmployeeTaskTracker](https://employeetasktrackerapplication.netlify.app/)
+
+Video Presentation-[Team presentation](https://youtu.be/f5nt9te9D5I?si=MYfycZ_EJAWp74_j)
 
 ## Table of Contents
 1. [Introduction](#introduction)
